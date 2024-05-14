@@ -1,5 +1,8 @@
 stages:
   - test
+  - lmao
+  - kek
+  - lol
 
 variables:
   ALLURE_LAUNCH_NAME: "${CI_PROJECT_NAME} - ${CI_COMMIT_SHORT_SHA}"
@@ -41,7 +44,7 @@ test2:
 
 test3:
   image: python:3.9.1
-  stage: kek2
+  stage: kek
   before_script:
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
