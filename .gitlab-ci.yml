@@ -12,25 +12,47 @@ variables:
   TESTS_BROWSER: "firefox"
   TESTS_BRANCH: ${CI_COMMIT_REF_NAME}
 
-test:
+test1:
+  image: python:3.9.1
+  stage: test
+  before_script :
+    - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
+    - chmod +x ./allurectl
+    - pip install --upgrade pip setuptools wheel pytest allure-pytest
+  script:
+    #- JR_UUID=$(openssl rand -hex 12)
+    - ./allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
+    #    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
+    - export $(./allurectl job-run env)
+    - printenv
+    - echo "============================================="
+
+test2:
   image: python:3.9.1
   stage: test
   before_script:
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
-    #- ./allurectl auth login
     - pip install --upgrade pip setuptools wheel pytest allure-pytest
   script:
-    #- ./allurectl job-run plan --output-file ${ALLURE_TESTPLAN_PATH}
-    #- if test -f ${ALLURE_TESTPLAN_PATH}; then cat ${ALLURE_TESTPLAN_PATH}; fi
-    #- ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
     - JR_UUID=$(openssl rand -hex 12)
     - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
-    - printenv | grep ALLURE_
-  # artifacts:
-  #   paths:
-  #     - testplan.json
-  #   expire_in: 1 day
+
+test3:
+  image: python:3.9.1
+  stage: test
+  before_script:
+    - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
+    - chmod +x ./allurectl
+    - pip install --upgrade pip setuptools wheel pytest allure-pytest
+  script:
+    - JR_UUID=$(openssl rand -hex 12)
+    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
+    - export $(./allurectl job-run env)
+    - printenv
+    - echo "============================================="
+  
+  
