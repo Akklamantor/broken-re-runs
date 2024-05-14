@@ -14,7 +14,7 @@ variables:
 
 test1:
   image: python:3.9.1
-  stage: test
+  stage: lmao
   before_script :
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
@@ -27,7 +27,7 @@ test1:
 
 test2:
   image: python:3.9.1
-  stage: test1
+  stage: lol
   before_script:
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
@@ -41,7 +41,7 @@ test2:
 
 test3:
   image: python:3.9.1
-  stage: test2
+  stage: kek2
   before_script:
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
