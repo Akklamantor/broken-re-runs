@@ -20,9 +20,7 @@ test1:
     - chmod +x ./allurectl
     - pip install --upgrade pip setuptools wheel pytest allure-pytest
   script:
-    #- JR_UUID=$(openssl rand -hex 12)
     - ./allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
-    #    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
@@ -36,7 +34,7 @@ test2:
     - pip install --upgrade pip setuptools wheel pytest allure-pytest
   script:
     - JR_UUID=$(openssl rand -hex 12)
-    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
+    - ./allurectl watch --job-run-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
@@ -50,7 +48,7 @@ test3:
     - pip install --upgrade pip setuptools wheel pytest allure-pytest
   script:
     - JR_UUID=$(openssl rand -hex 12)
-    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
+    - ./allurectl watch --job-run-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
