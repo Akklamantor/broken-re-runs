@@ -18,13 +18,14 @@ test:
   before_script:
     - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
     - chmod +x ./allurectl
-    - ./allurectl auth login
+    #- ./allurectl auth login
     - pip install --upgrade pip setuptools wheel pytest allure-pytest
   script:
     #- ./allurectl job-run plan --output-file ${ALLURE_TESTPLAN_PATH}
-    - if test -f ${ALLURE_TESTPLAN_PATH}; then cat ${ALLURE_TESTPLAN_PATH}; fi
+    #- if test -f ${ALLURE_TESTPLAN_PATH}; then cat ${ALLURE_TESTPLAN_PATH}; fi
     #- ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
-    - ./allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
+    - JR_UUID=$(openssl rand -hex 12)
+    - ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
