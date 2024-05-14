@@ -24,7 +24,7 @@ test:
     #- ./allurectl job-run plan --output-file ${ALLURE_TESTPLAN_PATH}
     - if test -f ${ALLURE_TESTPLAN_PATH}; then cat ${ALLURE_TESTPLAN_PATH}; fi
     #- ./allurectl watch --job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
-    - ./allurectl watch -- job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
+    - ./allurectl watch -job-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
     - printenv
     - echo "============================================="
     - printenv | grep ALLURE_
