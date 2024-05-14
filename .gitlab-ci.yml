@@ -1,0 +1,32 @@
+stages:
+  - test
+
+variables:
+  ALLURE_LAUNCH_NAME: "${CI_PROJECT_NAME} - ${CI_COMMIT_SHORT_SHA}"
+  ALLURE_LAUNCH_TAGS: "${CI_COMMIT_REF_NAME}, gitlab, demo, pytest, skip-live-doc, ignore"
+  ALLURE_TESTPLAN_PATH: "testplan.json"
+  ALLURE_RESULTS: "./allure-results"
+  ALLURE_PROJECT_ID: 7804
+  TESTS_ENDPOINT: "https://pytest.never.never.never.give.up"
+  TESTS_BROWSER: "chrome"
+  TESTS_BRANCH: ${CI_COMMIT_REF_NAME}
+
+test:
+  image: python:3.9.1
+  stage: test
+  before_script:
+    - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
+    - chmod +x ./allurectl
+    - ./allurectl auth login
+    - pip install --upgrade pip setuptools wheel pytest allure-pytest
+  script:
+    - ./allurectl job-run plan --output-file ${ALLURE_TESTPLAN_PATH}
+    - if test -f ${ALLURE_TESTPLAN_PATH}; then cat ${ALLURE_TESTPLAN_PATH}; fi
+    - ./allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS} || export $(./allurectl job-run env)
+    - printenv
+    - echo "============================================="
+    - printenv | grep ALLURE_
+  # artifacts:
+  #   paths:
+  #     - testplan.json
+  #   expire_in: 1 day

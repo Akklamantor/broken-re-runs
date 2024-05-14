@@ -1,0 +1,1 @@
+## sample allure-pytest project
