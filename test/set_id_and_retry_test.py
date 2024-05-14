@@ -25,7 +25,6 @@ def test_one_more_new_test_with_severity():
 def test_ui_test():
     pass
 
-
 @pytest.mark.parametrize(["a", "b"], [(1, "a"), (2, "b")])
 def test_parametrized(a, b):
     pass
