@@ -9,12 +9,14 @@ variables:
   ALLURE_LAUNCH_TAGS: "${CI_COMMIT_REF_NAME}, gitlab, demo, pytest, skip-live-doc, ignore"
   ALLURE_TESTPLAN_PATH: "testplan.json"
   ALLURE_ENDPOINT: "https://testing.testops.cloud"
+  ALLURE_RESULTS: "1allure-results"
   ALLURE_RESULTS: "allure-results"
   ALLURE_PROJECT_ID: 7804
   TESTS_ENDPOINT: "https://demo.testops.cloud"
   TESTS_BROWSER: "firefox"
   TESTS_BRANCH: ${CI_COMMIT_REF_NAME}
-  ALLURE_TESTVARIABLE: "lets break this stuff up"
+  ALLURE_TESTVARIABLE: "lets break this stuff"
+  
 
 
 test1:
