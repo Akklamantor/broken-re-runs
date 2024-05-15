@@ -14,6 +14,8 @@ variables:
   TESTS_ENDPOINT: "https://demo.testops.cloud"
   TESTS_BROWSER: "firefox"
   TESTS_BRANCH: ${CI_COMMIT_REF_NAME}
+  ALLURE_TESTVARIABLE: "lets break this stuff"
+
 
 test1:
   image: python:3.9.1
@@ -26,7 +28,7 @@ test1:
     - ./allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
-    - echo "============================================="
+    - echo "${ALLURE_TESTVARIABLE}=============================================" 
 
 test2:
   image: python:3.9.1
@@ -40,7 +42,7 @@ test2:
     - ./allurectl watch --job-run-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
-    - echo "============================================="
+    - echo "${ALLURE_TESTVARIABLE}=============================================" 
 
 test3:
   image: python:3.9.1
@@ -54,6 +56,6 @@ test3:
     - ./allurectl watch --job-run-uid ${JR_UUID} -- pytest test --alluredir=${ALLURE_RESULTS}
     - export $(./allurectl job-run env)
     - printenv
-    - echo "============================================="
+    - echo "${ALLURE_TESTVARIABLE}=============================================" 
   
   
