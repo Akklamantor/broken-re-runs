@@ -14,7 +14,7 @@ variables:
   TESTS_ENDPOINT: "https://demo.testops.cloud"
   TESTS_BROWSER: "firefox"
   TESTS_BRANCH: ${CI_COMMIT_REF_NAME}
-  ALLURE_TESTVARIABLE: "lets break this stuff"
+  ALLURE_TESTVARIABLE: "lets break this stuff up"
 
 
 test1:
